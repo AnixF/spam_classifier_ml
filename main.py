@@ -24,7 +24,13 @@ y_pred = model.predict(x_test)
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy * 100:.1f}%")
 
-new_sms = ["Congrats! U won 100000000 dollars, take it FREE from this website: http://hackyourphone.com"]
-new_vec = vectorizer.transform(new_sms)
-result = model.predict(new_vec)
-print(result[0])
+def check_sms(sms):
+    new_sms = [sms]
+    new_vec = vectorizer.transform(new_sms)
+    result = model.predict(new_vec)
+    return result[0]
+
+print(check_sms("Congrats! U won 100000000 dollars, take it FREE from this website: http://hackyourphone.com"))
+
+user_sms = input("Enter sms: ")
+print(check_sms(user_sms))
